@@ -1,6 +1,6 @@
 # github_commits
 
-Pulls your GitHub commits across one or more repos and writes them to a text file, grouped by date.
+Pulls your GitHub commits across one or more repos and writes them to a JSON file, grouped by date.
 
 ## Setup
 
@@ -31,15 +31,29 @@ python3 github_commits.py https://github.com/owner/repo
 python3 github_commits.py "https://github.com/owner/a,https://github.com/owner/b"
 ```
 
-Output is always written to `my_commits.txt` next to the script.
+Output is always written to `my_commits.json` next to the script. Merge commits (more than one parent) are skipped.
 
 ## Output format
 
-```
-2025-05-26
-1. [owner/repo-a] fix login redirect
-2. [owner/repo-b] bump dependency
+A JSON object keyed by commit date (`YYYY-MM-DD`, sorted ascending). Each date maps to a list of commits, each with its `repo` (`owner/name`) and the first line of the commit `message`:
 
-2025-05-27
-1. [owner/repo-a] add unit tests for auth
+```json
+{
+  "2026-04-10": [
+    {
+      "repo": "REPO A",
+      "message": "commit"
+    },
+    {
+      "repo": "REPO B",
+      "message": "commit1"
+    }
+  ],
+  "2026-04-13": [
+    {
+      "repo": "fuseagentsai/fuseagents",
+      "message": "commit2"
+    }
+  ]
+}
 ```
