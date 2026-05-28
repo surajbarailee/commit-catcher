@@ -51,7 +51,7 @@ A JSON object keyed by commit date (`YYYY-MM-DD`, sorted ascending). Each date m
   ],
   "2026-04-13": [
     {
-      "repo": "fuseagentsai/fuseagents",
+      "repo": "REPO A",
       "message": "commit2"
     }
   ]
